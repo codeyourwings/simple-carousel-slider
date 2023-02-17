@@ -64,3 +64,36 @@ document.addEventListener("keydown", function(event) {
         }
     });    
 });
+
+document.addEventListener("click", function(event) {
+    if (event.clientX > window.innerWidth/2) {
+        if (currentSlide === maxSlide) {
+            currentSlide = 4;
+        } else {
+            currentSlide++;
+        }
+    } else {
+        if (currentSlide === 0) {
+            currentSlide = 0;
+        } else {
+            currentSlide--;
+        }
+    }
+        
+    slides.forEach((slide, index) => {
+        if (index === currentSlide) {
+            slide.classList.add('active');
+        } else {
+            slide.classList.remove('active');
+        }
+        slide.style.transform = `translateX(${150 * (index - currentSlide)}%)`;
+    });
+
+    pagination.forEach((scroll, index) => {
+        if (index === currentSlide) {
+            scroll.classList.add('active');
+        } else {
+            scroll.classList.remove('active');
+        }
+    });
+});
